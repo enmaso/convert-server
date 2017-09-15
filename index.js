@@ -1,15 +1,15 @@
-const http = require('http')
-const childProcess = require('child_process')
-const fs = require('fs')
+const http = require('http');
+const childProcess = require('child_process');
+const fs = require('fs');
+
+const config = require('./config');
 
 childProcess.exec('convert -version', (err, stdout, stderr) => {
   if(err) {
-    console.error('convert required')
-    process.exit(1)
+    console.error('convert required');
+    process.exit(1);
   }
-})
-
-const HTTP_PORT = process.argv[2] || 8300
+});
 
 /**
   curl http://localhost:8300/pdf/png --upload-file myfile.pdf > myfile.png
@@ -17,7 +17,7 @@ const HTTP_PORT = process.argv[2] || 8300
   curl -X PUT --data-binary @myfile.pdf http://localhost:8300/pdf/png > myfile.png
 **/
 const server = http.createServer((req, res) => {
-  if(req.method == 'POST' || req.method == 'PUT') {
+  if(req.method == 'PUT') {
     let uri = req.url.split('/')
     uri.shift()
     let convertFrom = uri.shift()
@@ -48,13 +48,13 @@ const server = http.createServer((req, res) => {
     })
   } else {
     res.statusCode = 400
-    res.write('Must use POST or PUT method')
+    res.write('PUT method only')
     res.end()
   }
 })
 
-server.listen(HTTP_PORT, err => {
-  console.log(`convert-server running on port ${HTTP_PORT}`)
+server.listen(config.web.port, err => {
+  console.log(`convert-server running on port ${config.web.port}`)
 })
 
 /**
