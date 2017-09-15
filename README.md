@@ -16,7 +16,7 @@ If you want to has a different port
 node index.js 9000
 ```
 ## Using convert-server
-A pretty straightforward POST or PUT call
+A pretty straightforward PUT call
 ```
 curl -X PUT --data-binary @yourfile.pdf http://localhost:8300/pdf/png > yourfile.png
 ```
