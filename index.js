@@ -2,8 +2,6 @@ const http = require('http');
 const childProcess = require('child_process');
 const fs = require('fs');
 
-const config = require('./config');
-
 childProcess.exec('convert -version', (err, stdout, stderr) => {
   if(err) {
     console.error('convert required');
@@ -16,6 +14,7 @@ childProcess.exec('convert -version', (err, stdout, stderr) => {
   curl -T myfile.pdf http://localhost:8300/pdf/png > myfile.png
   curl -X PUT --data-binary @myfile.pdf http://localhost:8300/pdf/png > myfile.png
 **/
+const port = process.env.npm_package_config_port || 9100;
 const server = http.createServer((req, res) => {
   if(req.method == 'PUT') {
     let uri = req.url.split('/')
@@ -53,8 +52,8 @@ const server = http.createServer((req, res) => {
   }
 })
 
-server.listen(config.web.port, err => {
-  console.log(`convert-server running on port ${config.web.port}`)
+server.listen(port, err => {
+  console.log(`convert-server running on port ${port}`)
 })
 
 /**
