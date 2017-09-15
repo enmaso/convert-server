@@ -14,7 +14,8 @@ childProcess.exec('convert -version', (err, stdout, stderr) => {
   curl -T myfile.pdf http://localhost:8300/pdf/png > myfile.png
   curl -X PUT --data-binary @myfile.pdf http://localhost:8300/pdf/png > myfile.png
 **/
-const port = process.env.npm_package_config_port || 9100;
+const port = process.env.PORT || 9100;
+
 const server = http.createServer((req, res) => {
   if(req.method == 'PUT') {
     let uri = req.url.split('/')

@@ -3,9 +3,6 @@
   "version": "1.2.9",
   "description": "Lightweight Nodejs Imagemagick convert server",
   "main": "convert.js",
-  "config": {
-    "port": 9100
-  },
   "scripts": {
     "start": "node convert.js",
     "test": "echo \"Error: no test specified\" && exit 1"
