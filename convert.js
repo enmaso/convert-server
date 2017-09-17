@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
     })
     req.on('end', () => {
       stream.end()
-      childProcess.exec(`convert '${filepath}' ${filepath}.${convertTo}`, (err, stdout, stderr) => {
+      childProcess.exec(`convert '${filepath}[0]' ${filepath}.${convertTo}`, (err, stdout, stderr) => {
         if(!err) {
           let buffer = fs.readFileSync(`${filepath}.${convertTo}`)
           res.write(buffer, 'binary')

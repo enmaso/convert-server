@@ -24,4 +24,7 @@ Where the first query hash is the file type you want to convert from, and the se
 
 In the above example, you will be converting from **pdf** to **png**
 
+## Supported Formats
+[Imagemagick](https://www.imagemagick.org/script/formats.php)
+
 Make sense? Good.
