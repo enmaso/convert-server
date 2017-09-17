@@ -27,4 +27,11 @@ In the above example, you will be converting from **pdf** to **png**
 ## Supported Formats
 [Imagemagick](https://www.imagemagick.org/script/formats.php)
 
+## Usage
+```
+curl http://localhost:8300/pdf/png --upload-file myfile.pdf > myfile.png
+curl -T myfile.pdf http://localhost:8300/pdf/png > myfile.png
+curl -X PUT --data-binary @myfile.pdf http://localhost:8300/pdf/png > myfile.png
+```
+
 Make sense? Good.
